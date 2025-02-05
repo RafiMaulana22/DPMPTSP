@@ -1,47 +1,43 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-ses sion-status class="mb-4" :status="session('status')" />
+<x-template-auth-layout>
+    <div>
+        <h5 class="text-primary">Welcome Back !</h5>
+        <p class="text-muted">Sign in to continue to DPMPTSP.</p>
+    </div>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+    <div class="mt-4">
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" id="email" name="email" :value="old('email')"
+                    placeholder="Masukkan email...">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password-input">Password</label>
+                <div class="position-relative auth-pass-inputgroup mb-3">
+                    <input type="password" class="form-control pe-5 password-input" name="password" autofocus
+                        autocomplete="name" placeholder="Masukkan password..." id="password-input">
+                    <button
+                        class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon material-shadow-none"
+                        type="button" id="password-addon">
+                        <i class="ri-eye-fill align-middle"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="auth-remember-check" name="remember">
+                <label class="form-check-label" for="auth-remember-check">Remember me</label>
+            </div>
+            <div class="mt-4">
+                <button class="btn btn-success w-100" type="submit">Sign In</button>
+            </div>
+        </form>
+    </div>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    <div class="mt-5 text-center">
+        <p class="mb-0">
+            Dont have an account ?
+            <a href="{{ route('register') }}" class="fw-semibold text-primary text-decoration-underline"> Signup</a>
+        </p>
+    </div>
+</x-template-auth-layout>
