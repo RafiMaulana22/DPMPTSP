@@ -1,3 +1,5 @@
+<!-- plugin css -->
+<link href="{{ asset('assets') }}/libs/jsvectormap/jsvectormap.min.css" rel="stylesheet" type="text/css" />
 <!-- Layout config Js -->
 <script src="{{ asset('assets') }}/js/layout.js"></script>
 <!-- Bootstrap Css -->
