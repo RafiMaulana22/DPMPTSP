@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Alternatif;
+use App\Models\AlternatifKriteria;
+use App\Models\Kriteria;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -33,5 +36,11 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('123'),
             ]
         )->assignRole('operator');
+
+        Alternatif::factory()->count(10)->create();
+
+        Kriteria::factory()->count(5)->create();
+
+        AlternatifKriteria::factory()->count(50)->create();
     }
 }

@@ -2,8 +2,13 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KriteriaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
+// Kriteria
+Route::get('/kriteria', [KriteriaController::class, 'index'])->name('kriteria.index');
+Route::post('/kriteria', [KriteriaController::class, 'store'])->name('kriteria.store');
 
 // Auth
 Route::middleware(['guest'])->group(function () {
@@ -26,6 +31,8 @@ Route::get('/', function () {
 Route::middleware(['auth', 'role_permission'])->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
