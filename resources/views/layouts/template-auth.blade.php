@@ -110,7 +110,7 @@
                                 SipLayan. Crafted with
                                 <i class="mdi mdi-heart text-danger"></i>
                                 by
-                                <a href="https://turbo-main.com/" class="text-white">Turbo-Main</a>
+                                <a href="https://turbo-main.com/" target="_blank" class="text-white">Turbo-Main</a>
                             </p>
                         </div>
                     </div>

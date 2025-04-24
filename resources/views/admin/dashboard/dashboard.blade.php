@@ -28,7 +28,6 @@
                                             class="text-reset text-decoration-underline"><b>Upgrade</b></a>
                                     </div>
                                 </div>
-
                                 <div class="row align-items-end">
                                     <div class="col-sm-8">
                                         <div class="p-3">

@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Alternatif extends Model
+class pertanyaan extends Model
 {
     use HasFactory;
 
-    protected $table = 'alternatifs';
-    protected $primaryKey = 'token_alternatif';
+    protected $table = 'pertanyaans';
+    protected $primaryKey = 'token_pertanyaan';
     protected $keyType = 'string';
-    protected $guarded = ['id_alternatif'];
+    protected $guarded = ['id_pertanyaan'];
 
     public function getRouteKeyName()
     {
-        return 'token_alternatif';
+        return 'token_pertanyaan';
     }
 
     public function pilihan()
@@ -26,6 +26,6 @@ class Alternatif extends Model
 
     public function jawabanPengunjung()
     {
-        return $this->hasMany(jawabanPengunjung::class, 'id_alternatif', 'id_alternatif');
+        return $this->hasMany(jawabanPengunjung::class, 'id_pertanyaan', 'id_pertanyaan');
     }
 }

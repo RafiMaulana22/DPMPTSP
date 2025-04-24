@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Alternatif;
 use App\Models\AlternatifKriteria;
 use App\Models\Kriteria;
+use App\Models\pilihan;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -37,10 +38,16 @@ class DatabaseSeeder extends Seeder
             ]
         )->assignRole('operator');
 
-        Alternatif::factory()->count(10)->create();
+        $this->call([
+            PertanyaanSeeder::class,
+        ]);
 
-        Kriteria::factory()->count(5)->create();
+        // Alternatif::factory()->count(5)->create();
 
-        AlternatifKriteria::factory()->count(50)->create();
+        // pilihan::factory(5)->create();
+
+        // AlternatifKriteria::factory()->count(50)->create();
+
+        // Kriteria::factory()->count(5)->create();
     }
 }

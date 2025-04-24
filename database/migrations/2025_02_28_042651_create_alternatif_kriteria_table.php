@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('alternatif_kriteria', function (Blueprint $table) {
             $table->id('id_pivot');
-            $table->foreignId('alternatif_id')->references('id_alternatif')->on('alternatifs')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('kriteria_id')->references('id_kriteria')->on('kriterias')->onDelete('cascade')->onUpdate('cascade');
-            $table->decimal('nilai', 10, 2);
+            $table->foreignId('id_pilihan')->references('id_pilihan')->on('pilihans')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_pertanyaan')->references('id_pertanyaan')->on('pertanyaans')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });
     }

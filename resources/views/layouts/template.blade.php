@@ -68,7 +68,7 @@
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
                                 Design & Develop by
-                                <a href="https://turbo-main.com/">Turbo-Main</a>
+                                <a href="https://turbo-main.com/" target="_blank">Turbo-Main</a>
                             </div>
                         </div>
                     </div>

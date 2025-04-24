@@ -16,9 +16,16 @@ class RolePermissionSeeder extends Seeder
         $permissions = [
             'lihat dashboard',
             'mengelola masukan',
-            'mengelola pengguna',
-            'lihat laporan',
-            'analisa data kepuasan'
+            'create pertanyaan',
+            'view pertanyaan',
+            'edit pertanyaan',
+            'update pertanyaan',
+            'delete pertanyaan',
+            'view pilihan',
+            'create pilihan',
+            'edit pilihan',
+            'update pilihan',
+            'delete pilihan',
         ];
 
         foreach ($permissions as $permission) {
@@ -28,7 +35,7 @@ class RolePermissionSeeder extends Seeder
         $admin = Role::firstOrCreate(['name' => 'admin']);
         $operator = Role::firstOrCreate(['name' => 'operator']);
 
-        $admin->givePermissionTo(['lihat dashboard', 'mengelola masukan', 'mengelola pengguna', 'lihat laporan', 'analisa data kepuasan']);
+        $admin->givePermissionTo(['create pertanyaan', 'view pertanyaan', 'edit pertanyaan', 'update pertanyaan', 'delete pertanyaan', 'view pilihan', 'create pilihan', 'edit pilihan', 'update pilihan', 'delete pilihan']);
         $operator->givePermissionTo(['lihat dashboard', 'mengelola masukan']);
     }
 }

@@ -18,4 +18,9 @@ class Kriteria extends Model
     {
         return 'token_kriteria';
     }
+
+    public function alternatif()
+    {
+        return $this->belongsToMany(Alternatif::class, 'alternatif_kriteria', 'kriteria_id', 'alternatif_id');
+    }
 }

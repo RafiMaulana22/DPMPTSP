@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <!-- JAVASCRIPT -->
 <script src="{{ asset('assets') }}/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('assets') }}/libs/simplebar/simplebar.min.js"></script>
@@ -21,3 +23,9 @@
 
 <!-- App js -->
 <script src="{{ asset('assets') }}/js/app.js"></script>
+
+<!--Swiper slider js-->
+<script src="{{ asset('') }}/assets/libs/swiper/swiper-bundle.min.js"></script>
+
+<!-- landing init -->
+<script src="{{ asset('') }}/assets/js/pages/landing.init.js"></script>

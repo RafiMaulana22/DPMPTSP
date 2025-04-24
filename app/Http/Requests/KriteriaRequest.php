@@ -11,7 +11,7 @@ class KriteriaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +28,7 @@ class KriteriaRequest extends FormRequest
         ];
     }
 
-    public function massages(): array
+    public function messages(): array
     {
         return [
             'nama_kriteria.required' => 'Nama kriteria wajib diisi.',

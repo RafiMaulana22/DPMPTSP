@@ -15,7 +15,7 @@ class RolePermissionMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role = null, $permission = null): Response
+    public function handle(Request $request, Closure $next, $role, $permission = null): Response
     {
         $user = Auth::user();
 
