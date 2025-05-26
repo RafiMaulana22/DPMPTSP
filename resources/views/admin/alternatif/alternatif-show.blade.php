@@ -25,6 +25,10 @@
                     <label for="nama_alternatif" class="form-label">Nama Lengkap</label>
                     <input type="text" class="form-control" value="{{ $alternatif->nama_alternatif }}" disabled>
                 </div>
+                <div class="mb-3">
+                    <label for="profesi" class="form-label">Profesi</label>
+                    <input type="text" class="form-control" value="{{ $alternatif->profesi }}" disabled>
+                </div>
                 @foreach ($jawaban as $item)
                     <div class="mb-3">
                         <label class="form-label">{{ $item->pertanyaan->pertanyaan }}</label>

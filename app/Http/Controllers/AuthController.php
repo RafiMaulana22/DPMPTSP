@@ -18,7 +18,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard'));
+        return redirect()->intended(route('pertanyaan.index'));
     }
 
     public function register(Request $request)
@@ -43,7 +43,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard'));
+        return redirect(route('pertanyaan.index'));
     }
 
     public function destroy()

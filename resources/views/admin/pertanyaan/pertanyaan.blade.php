@@ -93,51 +93,41 @@
                                     <td>{{ $value->pertanyaan }}</td>
                                     <td>
                                         <div class="dropdown d-inline-block">
-                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="ri-more-fill align-middle"></i>
+                                            <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+                                                data-bs-target="#hapus{{ $value->token_pertanyaan }}">
+                                                Hapus
                                             </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li>
-                                                    <button class="dropdown-item remove-item-btn" type="button"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#delete{{ $value->token_pertanyaan }}">
-                                                        <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
-                                                        Delete
-                                                    </button>
-                                                </li>
-                                            </ul>
                                         </div>
                                     </td>
                                 </tr>
 
                                 <!-- Delete Modal -->
-                                <div class="modal fade" id="delete{{ $value->token_pertanyaan }}" aria-hidden="true"
-                                    aria-labelledby="..." tabindex="-1">
-                                    <div class="modal-dialog modal-dialog-centered">
+                                <div id="hapus{{ $value->token_pertanyaan }}" class="modal fade" tabindex="-1"
+                                    aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <div class="modal-body text-center p-5">
-                                                <lord-icon src="https://cdn.lordicon.com/nhqwlgwt.json" trigger="morph"
-                                                    stroke="light" state="morph-trash-in"
-                                                    colors="primary:#121331,secondary:#16a9c7,tertiary:#646e78,quaternary:#ebe6ef"
-                                                    style="width:200px;height:200px">
-                                                </lord-icon>
-                                                <div class="mt-4 pt-4">
-                                                    <h4>Peringatan, Delete {{ $value->pertanyaan }}!</h4>
-                                                    <p class="text-muted"> Data yang dihapus tidak bisa dikembalikan.</p>
-                                                    <a class="btn btn-danger"
-                                                        href="{{ route('pertanyaan.destroy', $value->token_pertanyaan) }}">
-                                                        Hapus
-                                                    </a>
-                                                    <button type="button" class="btn btn-primary"
-                                                        data-bs-dismiss="modal">
-                                                        Kembali
-                                                    </button>
-                                                </div>
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myModalLabel">Peringatan!</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"> </button>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                            <div class="modal-body">
+                                                <p class="text-muted">Apakah anda yakin ingin menghapus data dibawah ini?
+                                                </p>
+                                                <h5 class="fs-15">
+                                                    "{{ $value->pertanyaan }}"
+                                                </h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="{{ route('pertanyaan.destroy', ['pertanyaan' => $value->token_pertanyaan]) }}"
+                                                    class="btn btn-danger">
+                                                    Hapus!
+                                                </a>
+                                            </div>
+
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
                             @endforeach
                         </tbody>
                     </table>

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::post('/', [LandingController::class, 'store'])->name('landing.store');
 
+Route::get('/thank', [LandingController::class, 'thanks'])->name('landing.thank');
+
 // Auth
 Route::middleware(['guest'])->group(function () {
     // Login
@@ -32,7 +34,7 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [PertanyaanController::class, 'index'])->name('dashboard');
 
     // Pertanyaan
     Route::get('/pertanyaan', [PertanyaanController::class, 'index'])->name('pertanyaan.index')->middleware('permission:view pertanyaan');

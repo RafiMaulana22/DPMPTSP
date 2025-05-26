@@ -9,6 +9,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     @include('components.style')
+    @yield('styles')
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar-example">
@@ -16,12 +17,12 @@
     <div class="layout-wrapper landing">
         <nav class="navbar navbar-expand-lg navbar-landing fixed-top" id="navbar">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                {{--  <a class="navbar-brand" href="">
                     <img src="assets/images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark"
                         height="17">
                     <img src="assets/images/logo-light.png" class="card-logo card-logo-light" alt="logo light"
                         height="17">
-                </a>
+                </a>  --}}
                 <button class="navbar-toggler py-0 fs-20 text-body" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -30,14 +31,12 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
-                        <li class="nav-item">
+                        {{--  <li class="nav-item">
                             <a class="nav-link active" href="#hero">Home</a>
-                        </li>
+                        </li>  --}}
                     </ul>
 
                     <div class="">
-                        <a href="{{ route('login') }}"
-                            class="btn btn-link fw-medium text-decoration-none text-body">Sign in</a>
                     </div>
                 </div>
 
@@ -50,48 +49,7 @@
         <section class="section pb-0 hero-section" id="hero">
             <div class="bg-overlay bg-overlay-pattern"></div>
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-12 col-sm-10">
-                        <div class="card mt-3">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h3>Form</h3>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <form action="{{ route('landing.store') }}" method="post">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="nama_alternatif" class="form-label">Nama Lengkap</label>
-                                        <input type="text" class="form-control" name="nama_alternatif"
-                                            id="nama_alternatif" placeholder="Masukkan Nama Lengkap...">
-                                    </div>
-                                    @foreach ($pertanyaan as $item)
-                                        <div class="mb-3">
-                                            <label for="" class="form-label">{{ $item->pertanyaan }}</label>
-                                            <input type="hidden" name="id_pertanyaan[]"
-                                                value="{{ $item->id_pertanyaan }}">
-
-                                            @foreach ($item->pilihan as $get)
-                                                <br>
-                                                <label for="pilihan_{{ $item->id_pertanyaan }}_{{ $get->id_pilihan }}"
-                                                    class="form-label">
-                                                    <input type="radio" name="pilihan[{{ $item->id_pertanyaan }}]"
-                                                        id="pilihan_{{ $item->id_pertanyaan }}_{{ $get->id_pilihan }}"
-                                                        value="{{ $get->id_pilihan }}">
-                                                    <span>{{ $get->pilihan }}</span>
-                                                </label>
-                                            @endforeach
-                                        </div>
-                                    @endforeach
-
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @yield('content')
                 <!-- end row -->
             </div>
             <!-- end container -->
@@ -121,17 +79,17 @@
         </div>
 
         <!-- Script untuk menampilkan modal jika session ada -->
-        @if (session('form_submitted'))
+        {{--  @if (session('form_submitted'))
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     var thankYouModal = new bootstrap.Modal(document.getElementById('thankYouModal'));
                     thankYouModal.show();
                 });
             </script>
-        @endif
+        @endif  --}}
 
         <!-- Start footer -->
-        <footer class="custom-footer bg-dark py-5 position-relative">
+        {{--  <footer class="custom-footer bg-dark py-5 position-relative">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 mt-4">
@@ -240,7 +198,7 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer>  --}}
         <!-- end footer -->
 
 

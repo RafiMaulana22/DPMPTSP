@@ -29,7 +29,8 @@
                 <label class="form-check-label" for="auth-remember-check">Remember me</label>
             </div>
             <div class="mt-4">
-                <button class="btn btn-success w-100" type="submit">Sign In</button>
+                <button class="btn btn-success" type="submit">Sign In</button>
+                <button class="btn btn-warning" type="reset">Reset</button>
             </div>
         </form>
     </div>

@@ -16,10 +16,12 @@ class LandingController extends Controller
     public function index()
     {
         $data = [
-            'pertanyaan' => pertanyaan::get()
+            'pertanyaan' => pertanyaan::get(),
+            'no' => 3,
+            'jumlahPengisi' => Alternatif::count(),
         ];
 
-        return view('landing.landing', $data);
+        return view('landing.form.form', $data);
     }
 
     /**
@@ -37,9 +39,17 @@ class LandingController extends Controller
     {
         // dd($request->all());
 
+        $request->validate([
+            'nama_alternatif' => 'required|string|max:255',
+            'profesi' => 'required|string|max:255',
+            'pilihan' => 'required|array',
+            'pilihan.*' => 'required|integer', // setiap jawaban harus diisi
+        ]);
+
         $pengunjung = Alternatif::insertGetId([
             'token_alternatif' => Str::random(16),
             'nama_alternatif' => $request->input('nama_alternatif'),
+            'profesi' => $request->input('profesi'),
         ]);
 
         $jawaban = $request->input('pilihan'); // Ambil jawaban dari form
@@ -55,15 +65,15 @@ class LandingController extends Controller
         // Tambahkan session flash
         session()->flash('form_submitted', true);
 
-        return redirect()->back()->with('success', 'Jawaban berhasil disimpan!');
+        return redirect()->route('landing.thank')->with('success', 'Jawaban berhasil disimpan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function thanks()
     {
-        //
+        return view('landing.thank.thank');
     }
 
     /**
