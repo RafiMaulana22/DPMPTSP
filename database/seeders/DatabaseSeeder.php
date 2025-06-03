@@ -36,10 +36,11 @@ class DatabaseSeeder extends Seeder
                 'email' => 'lilis@gmail.com',
                 'password' => bcrypt('123'),
             ]
-        )->assignRole('operator');
+        )->assignRole('admin');
 
         $this->call([
             PertanyaanSeeder::class,
+            JawabanSeeder::class,
         ]);
 
         // Alternatif::factory()->count(5)->create();

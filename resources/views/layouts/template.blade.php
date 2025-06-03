@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     @include('components.style')
+    @yield('style')
 </head>
 
 <body>
@@ -1153,6 +1154,7 @@
     </div>
 
     @include('components.script')
+    @yield('script')
 </body>
 
 </html>

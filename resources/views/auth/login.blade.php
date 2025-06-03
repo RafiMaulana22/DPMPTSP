@@ -3,6 +3,12 @@
         <h5 class="text-primary">Welcome Back !</h5>
         <p class="text-muted">Sign in to continue to DPMPTSP.</p>
     </div>
+    
+    @if (session('status'))
+        <div class="alert alert-success border-0 mb-2 mx-2" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
 
     <div class="mt-4">
         <form action="{{ route('login') }}" method="POST">
@@ -13,6 +19,9 @@
                     placeholder="Masukkan email...">
             </div>
             <div class="mb-3">
+                <div class="float-end">
+                    <a href="{{ route('forgotPassword') }}" class="text-muted">Forgot password?</a>
+                </div>
                 <label class="form-label" for="password-input">Password</label>
                 <div class="position-relative auth-pass-inputgroup mb-3">
                     <input type="password" class="form-control pe-5 password-input" name="password" autofocus

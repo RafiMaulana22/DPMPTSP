@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\pertanyaan;
 use App\Http\Requests\PertanyaanRequest as Request;
+use App\Models\pilihan;
 use Illuminate\Support\Str;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class PertanyaanController extends Controller
     {
         $data = [
             'title' => 'Pertanyaan',
-            'pertanyaan' => pertanyaan::get(),
+            'pertanyaan' => pertanyaan::with('pilihan')->get(),
             'no' => 1,
         ];
 
@@ -69,9 +70,13 @@ class PertanyaanController extends Controller
      */
     public function edit(pertanyaan $pertanyaan)
     {
+        $pertanyaan->load('pilihan'); // Load pilihan terkait
+
         $data = [
             'title' => 'Edit Pertanyaan',
             'pertanyaan' => $pertanyaan,
+            'allPilihans' => pilihan::orderBy('pilihan', 'asc')->get(),
+            'selectedPilihanIds' => $pertanyaan->pilihan->pluck('id_pilihan')->toArray(), // Ambil ID pilihan yang sudah dipilih
         ];
 
         return view('admin.pertanyaan.pertanyaan-edit', $data);
@@ -82,10 +87,43 @@ class PertanyaanController extends Controller
      */
     public function update(Request $request, pertanyaan $pertanyaan)
     {
-        $pertanyaan->update([
-            'token_pertanyaan' => Str::random(16),
-            'pertanyaan' => $request->pertanyaan,
+        // 1. Validasi input (sangat direkomendasikan)
+        // Sesuaikan aturan validasi dengan kebutuhan Anda
+        $validatedData = $request->validate([
+            'pertanyaan' => 'required|string|max:65535', // max:65535 untuk tipe TEXT MySQL
+            'pilihan'    => 'nullable|array', // 'pilihan' bisa jadi tidak dikirim (jika semua tidak dicentang) atau berupa array
+            'pilihan.*'  => 'integer|exists:pilihans,id_pilihan', // Setiap item dalam 'pilihan' harus integer dan ada di tabel 'pilihans' kolom 'id_pilihan'
+            // Ganti 'pilihans,id_pilihan' jika nama tabel atau primary key model Pilihan Anda berbeda.
+            // Misalnya, jika primary key Pilihan adalah 'id', gunakan 'exists:pilihans,id'
         ]);
+
+        // 2. Update data utama pada model Pertanyaan
+        $pertanyaanDataToUpdate = [
+            'pertanyaan' => $validatedData['pertanyaan'],
+        ];
+
+        // Pertimbangkan apakah 'token_pertanyaan' benar-benar perlu di-update setiap kali.
+        // Jika ini adalah ID unik yang dibuat saat pembuatan, mungkin tidak perlu diubah.
+        // Jika memang perlu, Anda bisa menambahkannya di sini:
+        $pertanyaanDataToUpdate['token_pertanyaan'] = Str::random(16);
+        // Untuk saat ini, saya akan mengomentarinya jika tidak selalu dibutuhkan saat update.
+        // Jika Anda memutuskan untuk meng-update token, pastikan field tersebut fillable di model Pertanyaan.
+
+        $pertanyaan->update($pertanyaanDataToUpdate);
+
+        // 3. Sinkronisasi pilihan jawaban di tabel pivot
+        // Ini mengasumsikan Anda memiliki relasi bernama 'pilihans()' di model Pertanyaan Anda.
+        // Method sync() akan menangani penambahan/penghapusan relasi di tabel pivot.
+        if ($request->has('pilihan')) {
+            // Jika field 'pilihan' ada di request (meskipun array kosong jika semua tidak dicentang),
+            // gunakan nilainya. Jika 'pilihan' ada tapi null (seharusnya tidak terjadi dengan checkbox),
+            // '?? []' akan memastikan array kosong digunakan.
+            $pertanyaan->pilihan()->sync($validatedData['pilihan'] ?? []);
+        } else {
+            // Jika field 'pilihan' sama sekali tidak ada di request (tidak ada checkbox yang dicentang),
+            // ini berarti semua relasi pilihan harus dihapus untuk pertanyaan ini.
+            $pertanyaan->pilihan()->sync([]);
+        }
 
         return redirect()->route('pertanyaan.index')->with('success', 'Pertanyaan berhasil diubah');
     }

@@ -84,8 +84,30 @@
                         </span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <!-- item-->
                         <h6 class="dropdown-header">Welcome {{ Auth::user()->name }}!</h6>
+
+                        {{-- Item Lihat Profile --}}
+                        <a class="dropdown-item" href="{{ route('profile.show') }}"> {{-- Ganti # dengan route yang benar --}}
+                            <i class="mdi mdi-account-circle-outline text-muted fs-16 align-middle me-1"></i>
+                            <span class="align-middle">Lihat Profile</span>
+                        </a>
+
+                        {{-- Item Ubah Profile --}}
+                        <a class="dropdown-item" href="{{ route('profile.edit') }}"> {{-- Ganti # dengan route yang benar --}}
+                            <i class="mdi mdi-account-edit-outline text-muted fs-16 align-middle me-1"></i>
+                            <span class="align-middle">Ubah Profile</span>
+                        </a>
+
+                        {{-- Item Ubah Password --}}
+                        <a class="dropdown-item" href="{{ route('password.edit') }}"> {{-- Ganti # dengan route yang benar --}}
+                            <i class="mdi mdi-lock-outline text-muted fs-16 align-middle me-1"></i>
+                            <span class="align-middle">Ubah Password</span>
+                        </a>
+
+                        {{-- Pemisah antar grup menu --}}
+                        <div class="dropdown-divider"></div>
+
+                        {{-- Item Logout yang sudah ada --}}
                         <a class="dropdown-item" href="{{ route('logout') }}">
                             <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
                             <span class="align-middle" data-key="t-logout">Logout</span>

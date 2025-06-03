@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('alternatif_kriteria', function (Blueprint $table) {
             $table->id('id_pivot');
             $table->foreignId('id_pilihan')->references('id_pilihan')->on('pilihans')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_pertanyaan')->references('id_pertanyaan')->on('pertanyaans')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_pertanyaan')->references('id_pertanyaan')->on('pertanyaans')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -92,6 +92,17 @@
                     <span data-key="t-pages">Data master</span>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link @if (Route::currentRouteName() == 'user.index' || Route::currentRouteName() == 'pertanyaan.edit') active @endif"
+                        href="{{ route('user.index') }}">
+                        <i class="ri-pages-line"></i>
+                        <span data-key="t-pages">Data Admin</span>
+                    </a>
+                </li>
+                <li class="menu-title">
+                    <i class="ri-more-fill"></i>
+                    <span data-key="t-pages">Content</span>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link @if (Route::currentRouteName() == 'pertanyaan.index' || Route::currentRouteName() == 'pertanyaan.edit') active @endif"
                         href="{{ route('pertanyaan.index') }}">
                         <i class="ri-pages-line"></i>
@@ -102,7 +113,7 @@
                     <a class="nav-link menu-link @if (Route::currentRouteName() == 'pilihan.index' || Route::currentRouteName() == 'pertanyaan.edit') active @endif"
                         href="{{ route('pilihan.index') }}">
                         <i class="ri-pages-line"></i>
-                        <span data-key="t-pages">Jawaban</span>
+                        <span data-key="t-pages">Pilihan</span>
                     </a>
                 </li>
                 <li class="menu-title">

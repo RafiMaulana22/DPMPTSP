@@ -116,6 +116,7 @@
     <!-- end auth-page-wrapper -->
 
     @include('components.script')
+    @yield('script')
 </body>
 
 
